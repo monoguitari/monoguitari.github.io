@@ -1,0 +1,12 @@
+/*variables*/
+:root {
+  --background-color: #F5ECE2;
+}
+body {
+  background-color: var(--background-color);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 80ch;
+  padding: 1rem;
+  line-height: 1.5;
+}
