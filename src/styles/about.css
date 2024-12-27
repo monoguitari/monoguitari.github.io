@@ -1,0 +1,23 @@
+
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image {
+  width: 50%;
+}
+
+.bio {
+  line-height: 1rem;
+}
+
+.location {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+
