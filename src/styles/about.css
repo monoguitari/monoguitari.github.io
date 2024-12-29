@@ -5,6 +5,11 @@
   padding: 2rem;
   gap: 1rem;
   flex-wrap: wrap;
+
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
 }
 
 .image {
@@ -13,29 +18,39 @@
 
 .bio {
   flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+  height: 75vh;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.bio h1 {
+.bio-info {
+  display: flex;
+  flex-direction: column;
+  h5 {
+    padding: 0;
+    margin: 0;
+  }
+
+}
+
+.about-name {
   margin-top: 0rem;
 } 
 
-.bio h5 {
-  margin-bottom: 0rem;
-}
-
-.bio h6 {
-  margin-top: 0rem;
-}
-
-.location {
+.about-location {
   display: flex;
-  /*align-items: center;*/
-  gap: 1rem;
+  padding: 0;
 }
 
-.location svg {
-  margin-top: 0.25rem;
+.about-location h6 {
+  padding: 0;
+  margin: 0;
 }
+
 
 /*@media (max-width: 768px) {*/
 /*  .about {*/
