@@ -1,23 +1,46 @@
-
 .about {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .image {
-  width: 50%;
+  flex: 1;
 }
 
 .bio {
-  line-height: 1rem;
+  flex: 2;
+}
+
+.bio h1 {
+  margin-top: 0rem;
+} 
+
+.bio h5 {
+  margin-bottom: 0rem;
+}
+
+.bio h6 {
+  margin-top: 0rem;
 }
 
 .location {
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  /*align-items: center;*/
   gap: 1rem;
 }
+
+.location svg {
+  margin-top: 0.25rem;
+}
+
+/*@media (max-width: 768px) {*/
+/*  .about {*/
+/*    flex-direction: column;*/
+/*  }*/
+/*}*/
 
 
