@@ -14,17 +14,24 @@
 
 .image {
   flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.image img {
+  width: 100%; /* Ensures the image scales properly */
+  height: 100%; /* Matches the height of its container */
+  object-fit: cover; /* Ensures the image doesn't stretch or distort */
+  border-radius: 10px; /* Optional: Adds rounded corners for a modern look */
 }
 
 .bio {
-  flex: 2;
+  flex: 2; /* Allows the bio section to take up more space */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: space-between;
-  height: 75vh;
-  margin-top: 0;
-  margin-bottom: 0;
+  padding: 2rem;
+  border-radius: 10px; /* Optional */
 }
 
 .bio-info {
@@ -46,9 +53,13 @@
   padding: 0;
 }
 
-.about-location h6 {
+.about-location h6  {
   padding: 0;
   margin: 0;
+}
+
+a {
+  color: var(--primary-color)
 }
 
 
