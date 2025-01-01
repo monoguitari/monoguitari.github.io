@@ -1,6 +1,26 @@
 ---
-
+import { projects } from "../data/projects.ts";
 ---
+
 <div class="proj-container">
   <h1>PROJECTS</h1>
+  {projects.map((project) => (
+    <div class="project-card">
+      <h2>{project.title}</h2>
+      <p>{project.desc}</p>
+      <ul class="tech-list">
+        {project.tech.map((tech) => (
+          <li>{tech}</li>
+        ))}
+      </ul>
+      <a href={project.github} target="_blank" rel="noopener noreferrer">
+        View on GitHub
+      </a>
+      {project.image && (
+        <img src={project.image} alt={`${project.title} preview`} />
+      )}
+    </div>
+  ))}
 </div>
+
+
