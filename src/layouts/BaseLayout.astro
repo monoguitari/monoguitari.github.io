@@ -16,9 +16,18 @@ const { pageTitle } = Astro.props;
   <body>
     <Header />
     <!--<h1>{pageTitle}</h1>-->
-    <slot />
+    <div class="page-container">
+      <slot/>
+    </div>
     <Footer />
     <script>
     </script>
   </body>
 </html>
+
+<style>
+.page-container {
+padding: 2rem;
+}
+</style>
+

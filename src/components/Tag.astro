@@ -1,0 +1,21 @@
+---
+const { label } = Astro.props;
+---
+
+<div class="tag">
+  <p>{label}</p>
+</div>
+
+<style>
+.tag {
+  background-color: var(--secondary-color);
+  color: var(--background-color);
+  padding: 0.1rem 0.75rem; /* Reduce top and bottom padding */
+}
+
+.tag p {
+margin: 0; 
+line-height: 2;
+}
+</style>
+

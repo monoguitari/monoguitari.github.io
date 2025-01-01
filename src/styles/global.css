@@ -28,11 +28,13 @@ body {
   font-family: var(--primary-font);
   background-color: var(--background-color);
   margin: 0 auto;
-  width: 95%;
+  /*width: 95%;*/
   color: var(--primary-color);
   /*max-width: 80ch;*/
-  padding: 1rem;
+  /*padding: 1rem;*/
 }
+
+
 h1, h2 {
 /*h1, h2, h3, h4, h5, h6 {*/
   font-family: var(--header-font)
@@ -64,7 +66,7 @@ h6 {
 }
 
 /* Paragraphs and small text */
-p {
+p, a, b {
   font-size: var(--p);
 }
 
