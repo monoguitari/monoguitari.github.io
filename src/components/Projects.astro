@@ -1,26 +1,55 @@
 ---
 import { projects } from "../data/projects.ts";
+import Tag from "./Tag.astro";
 ---
 
 <div class="proj-container">
   <h1>PROJECTS</h1>
   {projects.map((project) => (
-    <div class="project-card">
-      <h2>{project.title}</h2>
+  <div class="project-card">
+    <img class="project-image" src={project.image} alt={`${project.title} preview`} />
+    <div class="project-info">
+      <h6 class="project-title">{project.title}</h6>
       <p>{project.desc}</p>
-      <ul class="tech-list">
+      <div class="tech-list">
         {project.tech.map((tech) => (
-          <li>{tech}</li>
+        <Tag label={tech} />
         ))}
-      </ul>
+      </div>
       <a href={project.github} target="_blank" rel="noopener noreferrer">
         View on GitHub
       </a>
-      {project.image && (
-        <img src={project.image} alt={`${project.title} preview`} />
-      )}
+    </div>
     </div>
   ))}
 </div>
 
+<style>
+.project-card {
+display: flex;
+gap: 2rem;
+}
 
+.project-info {
+  display: flex;
+flex-direction: column;
+gap: 0;
+}
+
+.project-image {
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+}
+
+.project-title {
+margin: 0;
+}
+
+.tech-list {
+display: flex;
+gap: 1rem;
+}
+
+
+</style>
