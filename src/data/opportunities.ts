@@ -1,10 +1,10 @@
 export const opportunities = [
   {
-    dates: "2024 - Present",
-    title: "Software Engineer II",
+    dates: "Summer 2025",
+    title: "Incoming Software Engineer II Intern",
     company: "Walmart",
     technology: [],
-    description: "ipsum loram",
+    description: "",
   },
   {
     dates: "June 2024 - August 2024",
