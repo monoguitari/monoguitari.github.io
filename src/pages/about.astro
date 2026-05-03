@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="About — Monoguitari">
+  <div class="about-header">
+    <h1 class="about-title">About</h1>
+    <div class="rule"></div>
+  </div>
+
+  <!-- Bio + Photo -->
+  <div class="bio-grid">
+    <div class="bio-left">
+      <p class="bio-text">
+        I'm Jesus Rodriguez — a CS student at Brown University finishing my degree in May 2026. I build full-stack systems and machine learning pipelines, with a focus on making complex infrastructure feel effortless to use.
+      </p>
+      <p class="bio-text">
+        At Walmart Global Tech, I reduced AI token usage by 1,200× by rethinking how decision trees interact with LLMs. At Brown's Singh Lab, I adapted genomic CNN architectures to predict biological age from single-cell sequencing data. I care about what happens at the seam between a model and the people using it.
+      </p>
+      <p class="bio-text">
+        I'm also Technical Director at Full Stack at Brown, where I oversee three product teams and help developers grow into better engineers. I believe the best technical work is the kind you have to explain to someone who doesn't share your vocabulary.
+      </p>
+
+      <div class="credits-section">
+        <p class="credits-label">Produced using</p>
+
+        <div class="credits-group">
+          <p class="credits-group-title">Languages</p>
+          <p class="credits-list">Python <span class="credits-separator">·</span> TypeScript <span class="credits-separator">·</span> JavaScript <span class="credits-separator">·</span> C / C++ <span class="credits-separator">·</span> Go <span class="credits-separator">·</span> R <span class="credits-separator">·</span> SQL</p>
+        </div>
+
+        <div class="credits-group">
+          <p class="credits-group-title">Frameworks &amp; Libraries</p>
+          <p class="credits-list">React <span class="credits-separator">·</span> FastAPI <span class="credits-separator">·</span> Node.js <span class="credits-separator">·</span> Flask <span class="credits-separator">·</span> PyTorch <span class="credits-separator">·</span> TensorFlow <span class="credits-separator">·</span> pandas <span class="credits-separator">·</span> NumPy</p>
+        </div>
+
+        <div class="credits-group">
+          <p class="credits-group-title">Infrastructure</p>
+          <p class="credits-list">Docker <span class="credits-separator">·</span> AWS <span class="credits-separator">·</span> Google Cloud <span class="credits-separator">·</span> CosmosDB <span class="credits-separator">·</span> NVIDIA Parabricks <span class="credits-separator">·</span> Git</p>
+        </div>
+
+        <div class="credits-group">
+          <p class="credits-group-title">Coursework</p>
+          <p class="credits-list">Distributed Systems <span class="credits-separator">·</span> Deep Learning <span class="credits-separator">·</span> Machine Learning <span class="credits-separator">·</span> Cryptography <span class="credits-separator">·</span> Operating Systems <span class="credits-separator">·</span> Computer Networks <span class="credits-separator">·</span> Computational Cognitive Science</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-right">
+      <div class="photo-placeholder">
+        <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 420 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="420" height="560" fill="#111"/>
+          <pattern id="stripes" x="0" y="0" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+            <rect width="6" height="12" fill="#161616"/>
+            <rect x="6" width="6" height="12" fill="#111"/>
+          </pattern>
+          <rect width="420" height="560" fill="url(#stripes)"/>
+          <rect x="1" y="1" width="418" height="558" fill="none" stroke="#c9a84c" stroke-width="0.5" opacity="0.3"/>
+        </svg>
+        <div class="photo-placeholder-inner">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="4" width="24" height="24" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+            <circle cx="16" cy="13" r="4" stroke="#c9a84c" stroke-width="1" opacity="0.5"/>
+            <path d="M6 28 Q16 20 26 28" stroke="#c9a84c" stroke-width="1" fill="none" opacity="0.5"/>
+          </svg>
+          <p class="photo-label">
+            Photo
+            <span>drop portrait here</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience Timeline -->
+  <div class="timeline-section">
+    <div class="timeline-header">
+      <p class="label-small" style="margin-bottom: 10px;">Experience</p>
+      <h2 class="timeline-heading">Work &amp; Research</h2>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="entry-date">Jun 2025 – Aug 2025</div>
+      <div class="entry-content">
+        <p class="entry-role">Software Engineer II Intern</p>
+        <p class="entry-org">Walmart Global Tech · Bentonville, AR</p>
+        <p class="entry-desc">Designed FastAPI endpoints to query CosmosDB data and send decision tree prompts to GPT-4o, reducing token usage 1,200× for real-time AI summaries. Built a React frontend for Walmart's Assortment Planning Tool, saving 14,800 hours across teams.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="entry-date">May 2025 – Jan 2026</div>
+      <div class="entry-content">
+        <p class="entry-role">Undergraduate Research Assistant</p>
+        <p class="entry-org">Singh Lab · Brown University</p>
+        <p class="entry-desc">Adapted the scBasset CNN architecture with TensorFlow and R to predict cell age from single-cell ATAC-seq embeddings. Developed Python preprocessing pipelines for genomic data fine-tuning.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="entry-date">Sep 2025 – Jan 2026</div>
+      <div class="entry-content">
+        <p class="entry-role">Undergraduate Research Assistant</p>
+        <p class="entry-org">Anna Aizer Lab · Brown University</p>
+        <p class="entry-desc">Designed an AI-assisted OCR pipeline to digitize historical U.S. Census records, automating data extraction for socioeconomic research.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="entry-date">Feb 2024 – Present</div>
+      <div class="entry-content">
+        <p class="entry-role">Technical Director</p>
+        <p class="entry-org">Full Stack at Brown · Providence, RI</p>
+        <p class="entry-desc">Oversee three full-stack development teams — 14 developers and designers each — guiding technology decisions and mentoring project managers through weekly syncs.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="entry-date">Mar 2024 – Sep 2025</div>
+      <div class="entry-content">
+        <p class="entry-role">Web Designer / Developer &amp; Science Communicator</p>
+        <p class="entry-org">Serre Lab · Brown University</p>
+        <p class="entry-desc">Redesigned the Serre Lab website using Figma and React. Created educational neuro-AI content for social media, translating complex research for a broad audience.</p>
+      </div>
+    </div>
+
+    <div class="timeline-entry">
+      <div class="entry-date">Jun 2024 – Aug 2024</div>
+      <div class="entry-content">
+        <p class="entry-role">Data Science Intern, HPC Team</p>
+        <p class="entry-org">Center for Computation and Visualization · Brown University</p>
+        <p class="entry-desc">Deployed NVIDIA Parabricks on a high-performance computing cluster via Docker, cutting genomics pipeline runtime from 3 hours to 30 minutes.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

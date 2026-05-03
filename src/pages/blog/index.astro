@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+---
+
+<BaseLayout title="B-Sides — Monoguitari">
+  <div class="blog-header">
+    <h1 class="blog-title">B-Sides</h1>
+    <p class="blog-subtitle">Monoguitari · Rarities &amp; Notes</p>
+    <div class="rule" style="margin-bottom: 0;"></div>
+  </div>
+
+  <div class="post-list">
+    {posts.map(post => (
+      <a href={`/blog/${post.slug}`} class="post-item">
+        <span class="post-date">{formatDate(post.data.date)}</span>
+        <div>
+          <p class="post-tag">{post.data.tag}</p>
+          <h2 class="post-title">{post.data.title}</h2>
+          <p class="post-summary">{post.data.summary}</p>
+        </div>
+        <span class="post-arrow">→</span>
+      </a>
+    ))}
+  </div>
+</BaseLayout>

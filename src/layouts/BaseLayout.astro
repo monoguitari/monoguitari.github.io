@@ -1,0 +1,68 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Jesus Rodriguez — CS @ Brown · Full Stack & AI/ML' } = Astro.props;
+const { pathname } = Astro.url;
+
+function isActive(path: string) {
+  if (path === '/') return pathname === '/';
+  return pathname.startsWith(path);
+}
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <!-- Anti-flash: apply light mode before paint -->
+  <script is:inline>
+    if (localStorage.getItem('mgt-light') === 'true') {
+      document.documentElement.classList.add('light');
+    }
+  </script>
+</head>
+<body>
+  <nav>
+    <a class="nav-brand" href="/">Monoguitari</a>
+    <ul class="nav-links">
+      <li><a href="/projects" class={isActive('/projects') ? 'active' : ''}>Projects</a></li>
+      <li><a href="/about" class={isActive('/about') ? 'active' : ''}>About</a></li>
+      <li><a href="/blog" class={isActive('/blog') ? 'active' : ''}>Blog</a></li>
+      <li>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light mode">◐</button>
+      </li>
+    </ul>
+  </nav>
+
+  <main class="page">
+    <slot />
+  </main>
+
+  <footer>
+    <span class="footer-left">Monoguitari © 2026</span>
+    <span class="footer-center">♪ now playing: building cool things</span>
+    <div class="footer-right">
+      <a href="https://github.com/monoguitari" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://linkedin.com/in/jrodri97" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="mailto:jesus_rodriguez@brown.edu">Email</a>
+    </div>
+  </footer>
+
+  <script defer src="/motion.js"></script>
+  <script is:inline>
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+      var isLight = document.documentElement.classList.toggle('light');
+      localStorage.setItem('mgt-light', isLight ? 'true' : 'false');
+    });
+  </script>
+</body>
+</html>

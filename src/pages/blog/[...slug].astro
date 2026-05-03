@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+---
+
+<BaseLayout title={`${post.data.title} — Monoguitari`} description={post.data.summary}>
+  <div class="post-wrapper">
+    <div class="post-meta">
+      <span class="meta-tag">{post.data.tag}</span>
+      <div class="meta-sep"></div>
+      <span class="meta-date">{formatDate(post.data.date)}</span>
+      {post.data.readTime && (
+        <>
+          <div class="meta-sep"></div>
+          <span class="meta-read">{post.data.readTime}</span>
+        </>
+      )}
+    </div>
+
+    <h1 class="post-heading">{post.data.title}</h1>
+    <div class="rule" style="margin-bottom: 48px;"></div>
+
+    <div class="post-body">
+      <Content />
+    </div>
+
+    <div class="post-footer">
+      <a href="/blog" class="back-link">← Back to B-Sides</a>
+      <span style="font-size: 11px; color: var(--very-muted); letter-spacing: 0.06em;">Monoguitari · 2026</span>
+    </div>
+  </div>
+</BaseLayout>

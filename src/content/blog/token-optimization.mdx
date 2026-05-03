@@ -1,0 +1,56 @@
+---
+title: "How I reduced GPT-4o token usage by 1,200× with decision trees"
+date: 2026-04-28
+tag: Technical
+summary: "A breakdown of the preprocessing pipeline I built at Walmart — and why the boring parts of prompt engineering matter more than the model."
+readTime: "8 min read"
+---
+
+The most important optimization I made at Walmart had nothing to do with the model. It wasn't a better prompt, a smarter retrieval strategy, or a fine-tuned checkpoint. It was a decision tree that ran before the model ever saw a single token.
+
+This is a write-up of how that worked, why it mattered, and what I think it says about the broader discipline of building with large language models in production.
+
+## The problem
+
+Walmart's Assortment Planning Tool helps category managers make decisions about which products to carry at which stores. It's a planning system operating over enormous datasets — hundreds of thousands of SKUs, dozens of dimensions, real-time inventory signals. The team wanted to use GPT-4o to generate natural-language summaries of changes in assortment plans, surfacing the most important shifts to the right people at the right time.
+
+The naive approach — pipe the raw data to the model and ask it to summarize — was immediately untenable. The context windows filled up, costs ballooned, and latency made the feature unusable in any real collaborative flow.
+
+> "The problem wasn't the model. The problem was that we were asking the model to do work that a for-loop could do better."
+
+## The solution: preprocessing as intelligence
+
+The realization was that most of what we were sending to the model was noise. The model's job was to **interpret** meaningful changes — not to find them. So I built a FastAPI service that would do the finding first.
+
+### Architecture
+
+The pipeline looked roughly like this:
+
+```python
+# Simplified version of the preprocessing pipeline
+
+def build_change_summary(plan_id: str, threshold: float = 0.05):
+    raw = query_cosmos(plan_id)           # fetch from CosmosDB
+    baseline = get_baseline(plan_id)
+
+    changes = []
+    for sku in raw.skus:
+        delta = compute_delta(sku, baseline)
+        if delta.magnitude > threshold:
+            changes.append(classify_change(delta))
+
+    # Only the classified, significant changes go to GPT-4o
+    return build_prompt(changes[:MAX_CHANGES])
+```
+
+The decision tree in `classify_change` was the key piece. Instead of sending raw deltas, we'd tag each change with a category — `velocity_shift`, `seasonal_adjustment`, `new_sku_introduction`, `store_exit` — and filter to only the changes above a significance threshold.
+
+By the time GPT-4o received a prompt, it was looking at a structured, pre-classified list of 15–40 changes rather than a raw data dump of thousands of rows. Token count dropped from ~180,000 to ~150 on average. That's the 1,200×.
+
+## What this means for LLM engineering
+
+There's a temptation, when building with frontier models, to treat the model as the system. It isn't. The model is one component in a system — and often not the most important one. The most important component is usually the preprocessing layer that decides what the model needs to see.
+
+This is an old idea in software engineering. Garbage in, garbage out. But it hits differently when you're paying per token and your users are waiting for a response. The economics of LLM production push you toward the same conclusions that good data engineering always has: **the quality of your inputs is the ceiling on the quality of your outputs**.
+
+The decision tree wasn't glamorous. It was a series of `if` statements informed by domain knowledge from the category management team. But it was the thing that made the feature ship.
