@@ -8,12 +8,14 @@ interface Props {
 
 const { project, href } = Astro.props;
 
+// FNV-1a: better avalanche than polynomial hash, so similar IDs (MGT-001, MGT-002…) spread across the palette
 function hashStr(str: string): number {
-  let h = 0;
+  let h = 2166136261;
   for (let i = 0; i < str.length; i++) {
-    h = (Math.imul(31, h) + str.charCodeAt(i)) | 0;
+    h ^= str.charCodeAt(i);
+    h = Math.imul(h, 16777619);
   }
-  return Math.abs(h);
+  return h >>> 0;
 }
 
 const COLORS = [
@@ -96,8 +98,10 @@ const PATTERNS: { svg: string; opacity: number }[] = [
 ];
 
 const h = hashStr(project.id);
+// separate seed so color and pattern don't correlate (single hash bits cluster)
+const h2 = hashStr(project.id + '|pattern');
 const bgColor = project.color ?? COLORS[h % COLORS.length];
-const pattern = PATTERNS[(h >> 3) % PATTERNS.length];
+const pattern = PATTERNS[h2 % PATTERNS.length];
 const link = href ?? project.href ?? '#';
 const techStr = project.tech.join(' · ');
 ---
