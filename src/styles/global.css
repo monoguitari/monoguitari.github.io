@@ -383,6 +383,19 @@ html.light .btn-primary { color: #f5f0e8; }
   align-items: center;
 }
 
+.hero-social {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.hero-social a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.hero-social a:hover { color: var(--gold); }
+
 .hero-right {
   display: flex;
   align-items: center;
